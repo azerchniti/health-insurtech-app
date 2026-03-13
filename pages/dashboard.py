@@ -1,7 +1,7 @@
 
 import streamlit as st
 import plotly.express as px
-from utils.preprocessing import load_data
+from preprocessing import load_data
 
 st.title("Health Dashboard")
 import streamlit as st
