@@ -3,6 +3,31 @@ from model import train_model
 
 st.set_page_config(page_title="Health Insurance Predictor", layout="wide")
 
+# ---------- AUTHENTIFICATION ----------
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+
+    st.title("🔐 Connexion à l'application")
+
+    username = st.text_input("Nom d'utilisateur")
+    password = st.text_input("Mot de passe", type="password")
+
+    if st.button("Se connecter"):
+
+        if username == "test" and password == "test":
+            st.session_state.authenticated = True
+            st.success("Connexion réussie")
+            st.rerun()
+        else:
+            st.error("Identifiants incorrects")
+
+    st.stop()
+
+# ---------- APPLICATION ----------
+
 # Style CSS
 st.markdown(
     """
@@ -30,20 +55,20 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Titre principal
+# Titre
 st.markdown('<p class="title">🏥 Health-InsurTech</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Prédiction des frais médicaux grâce au Machine Learning</p>', unsafe_allow_html=True)
 
 st.write("")
 
-# Chargement du modèle
+# Charger le modèle
 model, score, columns = train_model()
 
 st.info(f"Performance du modèle (R²) : {round(score,3)}")
 
 st.markdown("---")
 
-# Contexte du projet
+# Contexte
 st.markdown('<p class="section">🎯 Contexte du projet</p>', unsafe_allow_html=True)
 
 st.write(
@@ -63,7 +88,7 @@ En parallèle, l’application doit garantir la **protection des données person
 
 st.markdown("---")
 
-# Description du dataset
+# Dataset
 st.markdown('<p class="section">📊 Présentation du jeu de données</p>', unsafe_allow_html=True)
 
 st.write(
@@ -98,7 +123,7 @@ Seules les variables pertinentes pour la prédiction sont conservées :
 
 st.markdown("---")
 
-# IA éthique et RGPD
+# RGPD
 st.markdown('<p class="section">⚖️ IA Éthique & Conformité RGPD</p>', unsafe_allow_html=True)
 
 st.write(
