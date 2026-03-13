@@ -2,8 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from utils.preprocessing import load_data
-
+from preprocessing import load_data
 def train_model():
 
     df = load_data()
