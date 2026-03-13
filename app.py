@@ -27,6 +27,11 @@ if not st.session_state.authenticated:
     st.stop()
 
 # ---------- APPLICATION ----------
+st.sidebar.title("Compte")
+
+if st.sidebar.button("Se déconnecter"):
+    st.session_state.authenticated = False
+    st.rerun()
 
 # Style CSS
 st.markdown(
